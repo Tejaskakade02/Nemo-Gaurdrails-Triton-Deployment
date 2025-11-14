@@ -1,0 +1,15 @@
+llm:
+  type: ollama
+  model: llama3:8b-instruct-q5_K_M
+  base_url: "http://host.docker.internal:11434"
+  temperature: 0.3
+
+colang:
+  files:
+    - rails.co
+
+rails:
+  input_types:
+    - user
+  output_types:
+    - bot

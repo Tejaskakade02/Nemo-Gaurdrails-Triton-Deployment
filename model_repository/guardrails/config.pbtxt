@@ -1,0 +1,29 @@
+name: "guardrails"
+backend: "python"
+
+input [
+  {
+    name: "TEXT"
+    data_type: TYPE_STRING
+    dims: [1]
+  }
+]
+
+output [
+  {
+    name: "OUTPUT_TEXT"
+    data_type: TYPE_STRING
+    dims: [1]
+  }
+]
+
+instance_group [
+  {
+    kind: KIND_CPU
+  }
+]
+
+parameters: {
+  key: "PYTHON_EXEC_PATH"
+  value: { string_value: "/usr/bin/python3" }
+}

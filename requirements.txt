@@ -1,0 +1,16 @@
+nemoguardrails==0.17.0
+fastapi
+uvicorn
+aiohttp
+httpx
+jinja2
+pydantic
+nest_asyncio
+langchain
+langchain-core
+langchain-community
+fastembed
+protobuf
+onnxruntime
+requests
+numpy
