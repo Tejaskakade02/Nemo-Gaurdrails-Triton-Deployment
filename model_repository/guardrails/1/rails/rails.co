@@ -1,0 +1,117 @@
+############################################################
+# PII Protection
+############################################################
+define user ask pii
+  "credit card"
+  "SSN"
+  "password"
+  "account number"
+
+define bot protect pii
+  "I cannot discuss sensitive information. Please use secure channels."
+
+define bot debug_pii
+  "[DEBUG] PII rule triggered — blocking response."
+
+define flow pii_block
+  when user ask pii
+    bot debug_pii
+    bot protect pii
+    stop
+
+
+############################################################
+# Fraud / Illegal Activity
+############################################################
+define user ask fraud
+  "fake check"
+  "insider trade"
+  "scam"
+  "money mule"
+
+define bot refuse fraud
+  "I cannot assist with illegal or fraudulent activities."
+
+define bot debug_fraud
+  "[DEBUG] Fraud rule triggered — blocking response."
+
+define flow fraud_block
+  when user ask fraud
+    bot debug_fraud
+    bot refuse fraud
+    stop
+
+
+############################################################
+# Jailbreak Prevention
+############################################################
+define user jailbreak
+  "DAN"
+  "ignore rules"
+  "bypass"
+
+define bot refuse jailbreak
+  "I cannot override my safety policies."
+
+define bot debug_jailbreak
+  "[DEBUG] Jailbreak attempt detected — blocking response."
+
+define flow jailbreak_block
+  when user jailbreak
+    bot debug_jailbreak
+    bot refuse jailbreak
+    stop
+
+
+############################################################
+# Off Topic
+############################################################
+define user off topic
+  "weather"
+  "joke"
+  "politics"
+
+define bot stay on finance
+  "Let's keep the conversation focused on finance topics."
+
+define bot debug_offtopic
+  "[DEBUG] Off-topic detected — redirecting to finance."
+
+define flow off_topic
+  when user off topic
+    bot debug_offtopic
+    bot stay on finance
+    stop
+
+
+############################################################
+# Advice With Disclaimer
+############################################################
+define user ask advice
+  "invest"
+  "buy stock"
+  "loan"
+
+define bot disclaimer
+  "This is not financial advice. Consult a licensed advisor."
+
+define bot debug_advice
+  "[DEBUG] Advice rule triggered — adding disclaimer."
+
+define flow advice
+  when user ask advice
+    bot debug_advice
+    bot disclaimer
+    bot generate
+
+
+############################################################
+# General fallback flow
+############################################################
+define bot debug_fallback
+  "[DEBUG] No rule matched — going to general LLM response."
+
+define flow general
+  user $user_message
+  bot debug_fallback
+  bot generate
