@@ -258,3 +258,6 @@ This project is licensed under the MIT License.
 # ⭐ Support
 
 If this helped you, please star ⭐ the repository!
+
+# Output
+![Model Output](assests/nemo_up.png)
