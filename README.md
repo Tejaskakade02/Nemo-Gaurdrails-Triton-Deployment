@@ -260,4 +260,7 @@ This project is licensed under the MIT License.
 If this helped you, please star ⭐ the repository!
 
 # Output
-![Model Output](assests/nemo_up.png)
+![Model Output](assets/nemo_up.png)
+
+![Model Output](assets/test_nemo.png)
+
